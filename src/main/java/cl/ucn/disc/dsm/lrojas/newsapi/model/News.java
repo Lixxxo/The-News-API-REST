@@ -12,6 +12,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import net.openhft.hashing.LongHashFunction;
 
+import javax.persistence.*;
 import java.time.ZonedDateTime;
 
 /**
@@ -20,6 +21,7 @@ import java.time.ZonedDateTime;
  * @author Luis Rojas Olivera
  */
 @NoArgsConstructor
+@Entity
 public final class News {
 
   /**
@@ -33,6 +35,7 @@ public final class News {
    * @param content can't be null.
    * @param publishedAt can't be null.
    */
+
   public News(
       final String title,
       final String source,
@@ -88,8 +91,17 @@ public final class News {
   }
 
   /**
+   * Primary key
+   */
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Getter
+  private Long key;
+
+  /**
    * ID unique.
    */
+  // @Column(unique = true)
   @Getter
   private Long id;
 
