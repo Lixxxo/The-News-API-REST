@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,13 +14,26 @@ import java.util.List;
 @RestController
 public class NewsController {
 
-    /*
-    Return all News in the Backend
+    /**
+     * The Repo of News
+     */
+    private final NewsRepository newsRepository;
+
+    /**
+     * The repo of News
+     */
+    public NewsController(NewsRepository newsRepository){
+        this.newsRepository = newsRepository;
+    }
+    /**
+     * Return all News in the Backend
      */
     @GetMapping("v1/news")
     public List<News> all(){
 
-        return new ArrayList<>();
+        // Equals to SELECT * FROM News;
+        final List<News> theNews = this.newsRepository.findAll();
+        return theNews;
     }
 
     /*
@@ -29,7 +41,8 @@ public class NewsController {
      */
     @GetMapping("v1/news/{id}")
     public News one(@PathVariable final Long id){
-
-        return new News();
+        // FIXME: Change the RuntimeException to 404
+        return this.newsRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("News Not Found :("));
     }
 }
