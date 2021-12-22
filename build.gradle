@@ -15,6 +15,7 @@ configurations {
 
 repositories {
 	mavenCentral()
+	maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -34,6 +35,10 @@ dependencies {
 
 	// https://mvnrepository.com/artifact/net.openhft/zero-allocation-hashing
 	implementation 'net.openhft:zero-allocation-hashing:0.15'
+
+	// News-API-Java Client
+	// https://newsapi.org/docs/client-libraries/java
+	implementation 'com.github.KwabenBerko:News-API-Java:1.0.0'
 
 }
 
