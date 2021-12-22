@@ -96,13 +96,16 @@ public final class News {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Getter
+  @Column(unique = true)
   private Long key;
 
   /**
    * ID unique.
    */
-  // @Column(unique = true)
+
+  @GeneratedValue
   @Getter
+  @Column(unique = true)
   private Long id;
 
   /**
